@@ -45,7 +45,7 @@ updateCounter();
 // Botão de surpresa
 document.getElementById('secretButton').addEventListener('click', function() {
     const message = document.getElementById('secretMessage');
-    message.style.display = 'block';
+    message.style.display = message.style.display === 'none' ? 'block' : 'none';
 });
 
 // Função para curtir as fotos
@@ -59,35 +59,3 @@ document.querySelectorAll('.like-btn').forEach(button => {
         }
     });
 });
-
-// Função para criar corações
-function createHearts() {
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.innerHTML = '❤️';
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = Math.random() * 3 + 2 + 's';
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 5000);
-}
-
-setInterval(createHearts, 300);
-
-// Função para criar estrelas
-function createStars() {
-    const star = document.createElement('div');
-    star.classList.add('star');
-    star.style.left = Math.random() * 100 + 'vw';
-    star.style.top = Math.random() * 100 + 'vh';
-    star.style.animationDuration = Math.random() * 2 + 1 + 's';
-    document.body.appendChild(star);
-
-    setTimeout(() => {
-        star.remove();
-    }, 3000);
-}
-
-setInterval(createStars, 100);
