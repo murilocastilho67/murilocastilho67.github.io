@@ -36,7 +36,7 @@ function updateCounter() {
         months += 12;
     }
 
-    document.getElementById("counterText").innerHTML = `💜 ${years} anos, ${months} meses, ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos 💜`;
+    document.getElementById("counter").innerHTML = `💜 ${years} anos, ${months} meses, ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos 💜`;
 }
 
 setInterval(updateCounter, 1000);
@@ -48,19 +48,46 @@ document.getElementById('secretButton').addEventListener('click', function() {
     message.style.display = 'block';
 });
 
-// Dark mode toggle
-document.getElementById("toggleDarkMode").addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-});
-
-// Função para curtir imagens
+// Função para curtir as fotos
 document.querySelectorAll('.like-btn').forEach(button => {
     button.addEventListener('click', function() {
         this.classList.toggle('liked');
         if (this.classList.contains('liked')) {
-            this.style.color = "#ff4d4d";
+            this.innerHTML = '<i class="fas fa-heart"></i> Curtido';
         } else {
-            this.style.color = "white";
+            this.innerHTML = '<i class="fas fa-heart"></i> Curtir';
         }
     });
 });
+
+// Função para criar corações
+function createHearts() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = '❤️';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+setInterval(createHearts, 300);
+
+// Função para criar estrelas
+function createStars() {
+    const star = document.createElement('div');
+    star.classList.add('star');
+    star.style.left = Math.random() * 100 + 'vw';
+    star.style.top = Math.random() * 100 + 'vh';
+    star.style.animationDuration = Math.random() * 2 + 1 + 's';
+    document.body.appendChild(star);
+
+    setTimeout(() => {
+        star.remove();
+    }, 3000);
+}
+
+setInterval(createStars, 100);
