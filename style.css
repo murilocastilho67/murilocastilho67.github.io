@@ -1,22 +1,26 @@
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #6a4c9c, #b28e8e); /* Alterado para roxo */
+    background: linear-gradient(to right, #6a4c9c, #b28e8e);
     text-align: center;
     margin: 0;
     padding: 0;
+    overflow: hidden;
+    position: relative;
 }
 
 .container {
     padding: 20px;
+    position: relative;
+    z-index: 1;
 }
 
 h1 {
-    color: #d1a3d8; /* Cor do título alterada para roxo claro */
-    font-size: 2.5rem; /* Aumentar o tamanho */
-    font-weight: bold; /* Negrito */
-    animation: typing 2.5s steps(30) 1s 1 normal both; /* Efeito de digitação */
-    white-space: nowrap; /* Evita quebra de linha */
-    overflow: hidden; /* Esconde o que não é exibido */
+    color: #d1a3d8;
+    font-size: 2.5rem;
+    font-weight: bold;
+    animation: typing 2.5s steps(30) 1s 1 normal both;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 @keyframes typing {
@@ -29,9 +33,9 @@ h1 {
 }
 
 #counter {
-    font-size: 2rem; /* Aumenta o tamanho */
+    font-size: 2rem;
     color: white;
-    background: #6a4c9c; /* Cor roxa para o contador */
+    background: #6a4c9c;
     padding: 10px;
     border-radius: 10px;
     display: inline-block;
@@ -47,9 +51,9 @@ h1 {
 }
 
 .gallery figure {
-    opacity: 0; /* Começa invisível */
-    transform: translateY(50px); /* Começa com um deslocamento para baixo */
-    transition: opacity 1s, transform 1s; /* Transição suave */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s, transform 1s;
 }
 
 .gallery img {
@@ -60,16 +64,47 @@ h1 {
 }
 
 .gallery figcaption {
-    font-size: 1.5rem; /* Aumenta o tamanho da legenda */
-    font-weight: bold; /* Torna a legenda em negrito */
-    color: #d1a3d8; /* Cor roxa clara para as legendas */
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #d1a3d8;
     margin-top: 5px;
 }
 
-audio {
+.secret-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
     margin-top: 20px;
+    transition: background-color 0.3s;
 }
 
+.secret-button:hover {
+    background-color: #e60000;
+}
+
+.secret-message {
+    display: none;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #d1a3d8;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Efeito de chuva de corações */
 @keyframes falling-hearts {
     0% {
         transform: translateY(-100%);
@@ -84,39 +119,25 @@ audio {
     color: #ff4d4d;
     font-size: 20px;
     animation: falling-hearts 5s linear infinite;
+    z-index: 0;
 }
 
-.secret-button {
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    margin-top: 20px;
+/* Efeito de estrelas */
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
 }
 
-.secret-message {
-    display: none;
-    margin-top: 20px;
-    text-align: center;
+.star {
+    position: absolute;
+    background: white;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    animation: twinkle 2s infinite;
+    z-index: 0;
 }
-
-.secret-message p {
-    font-size: 1.5rem;
-    color: #d1a3d8;
-}
-
-.secret-message img {
-    width: auto;
-    height: 300px;
-    border-radius: 10px;
-    margin-top: 10px;
-}
-
-body {
-    background: linear-gradient(to right, #6a4c9c, #b28e8e), url('stars.png');
-    background-blend-mode: overlay;
-}
-

@@ -53,18 +53,16 @@ function revealImagesOnScroll() {
     const images = document.querySelectorAll('.gallery figure');
     images.forEach(image => {
         if (isInViewport(image)) {
-            image.style.opacity = 1; // Torna a imagem visível
-            image.style.transform = 'translateY(0)'; // Remove o deslocamento
+            image.style.opacity = 1;
+            image.style.transform = 'translateY(0)';
         }
     });
 }
 
-// Adiciona o evento de rolagem
 window.addEventListener('scroll', revealImagesOnScroll);
-
-// Chama a função para garantir que as imagens visíveis ao carregar a página também sejam animadas
 revealImagesOnScroll();
 
+// Função para criar corações
 function createHearts() {
     const heart = document.createElement('div');
     heart.classList.add('heart');
@@ -80,6 +78,23 @@ function createHearts() {
 
 setInterval(createHearts, 300);
 
+// Função para criar estrelas
+function createStars() {
+    const star = document.createElement('div');
+    star.classList.add('star');
+    star.style.left = Math.random() * 100 + 'vw';
+    star.style.top = Math.random() * 100 + 'vh';
+    star.style.animationDuration = Math.random() * 2 + 1 + 's';
+    document.body.appendChild(star);
+
+    setTimeout(() => {
+        star.remove();
+    }, 3000);
+}
+
+setInterval(createStars, 100);
+
+// Botão de surpresa
 document.getElementById('secretButton').addEventListener('click', function() {
     const message = document.getElementById('secretMessage');
     message.style.display = 'block';
