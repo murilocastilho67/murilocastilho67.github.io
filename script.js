@@ -36,66 +36,31 @@ function updateCounter() {
         months += 12;
     }
 
-    document.getElementById("counter").innerHTML = `💜 ${years} anos, ${months} meses, ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos 💜`;
+    document.getElementById("counterText").innerHTML = `💜 ${years} anos, ${months} meses, ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos 💜`;
 }
 
 setInterval(updateCounter, 1000);
 updateCounter();
 
-// Função que verifica se um elemento está visível na tela
-function isInViewport(element) {
-    const rect = element.getBoundingClientRect();
-    return rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth);
-}
-
-// Função que ativa a animação das imagens
-function revealImagesOnScroll() {
-    const images = document.querySelectorAll('.gallery figure');
-    images.forEach(image => {
-        if (isInViewport(image)) {
-            image.style.opacity = 1;
-            image.style.transform = 'translateY(0)';
-        }
-    });
-}
-
-window.addEventListener('scroll', revealImagesOnScroll);
-revealImagesOnScroll();
-
-// Função para criar corações
-function createHearts() {
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.innerHTML = '❤️';
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = Math.random() * 3 + 2 + 's';
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 5000);
-}
-
-setInterval(createHearts, 300);
-
-// Função para criar estrelas
-function createStars() {
-    const star = document.createElement('div');
-    star.classList.add('star');
-    star.style.left = Math.random() * 100 + 'vw';
-    star.style.top = Math.random() * 100 + 'vh';
-    star.style.animationDuration = Math.random() * 2 + 1 + 's';
-    document.body.appendChild(star);
-
-    setTimeout(() => {
-        star.remove();
-    }, 3000);
-}
-
-setInterval(createStars, 100);
-
 // Botão de surpresa
 document.getElementById('secretButton').addEventListener('click', function() {
     const message = document.getElementById('secretMessage');
     message.style.display = 'block';
+});
+
+// Dark mode toggle
+document.getElementById("toggleDarkMode").addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+});
+
+// Função para curtir imagens
+document.querySelectorAll('.like-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        this.classList.toggle('liked');
+        if (this.classList.contains('liked')) {
+            this.style.color = "#ff4d4d";
+        } else {
+            this.style.color = "white";
+        }
+    });
 });
