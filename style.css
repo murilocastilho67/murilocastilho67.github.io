@@ -39,7 +39,7 @@ body {
     cursor: pointer;
 }
 
-/* Banner de Dia dos Namorados */
+/* Banner */
 .valentines-banner {
     background-color: #ff4d4d; /* Vermelho romântico */
     color: white;
@@ -48,7 +48,19 @@ body {
     font-size: 1.3rem;
     margin-top: 60px; /* Ajuste para topbar */
     animation: fadeIn 1s ease-in;
+    /* Adicionado para o texto quebrar bem */
+    line-height: 1.5; 
 }
+
+/* O <span> dentro do banner */
+#relationshipCounterBanner {
+    display: block; /* Faz o contador quebrar a linha */
+    font-weight: bold;
+    font-size: 1.1rem; /* Um pouco menor para caber */
+    margin: 5px 0;
+    color: #ffc2c2; /* Um rosa/branco para destacar */
+}
+
 
 @keyframes fadeIn {
     from { opacity: 0; }
@@ -93,15 +105,19 @@ body {
     z-index: 1;
 }
 
-/* Contador de tempo de namoro */
-#counter {
+/* MUDANÇA AQUI: Contador de tempo (agora só de noivado) */
+#engagementCounter {
     font-size: 1.5rem;
     color: white;
     background: #6a4c9c; /* Roxo médio */
     padding: 10px;
     border-radius: 10px;
-    display: inline-block;
+    display: block; /* Para ficar centralizado e em bloco */
     margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 90%;
+    word-wrap: break-word; /* Garante que o texto quebre */
 }
 
 /* Botão de surpresa */
@@ -307,7 +323,12 @@ body {
         font-size: 1rem;
         margin-top: 50px;
     }
-    #counter {
+    #relationshipCounterBanner {
+        font-size: 0.9rem; /* Ajusta o contador do banner no mobile */
+    }
+    
+    /* MUDANÇA AQUI: Alterado de #counter para #engagementCounter */
+    #engagementCounter {
         font-size: 1.2rem;
         padding: 8px;
     }

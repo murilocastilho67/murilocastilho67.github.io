@@ -9,7 +9,6 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
-    <!-- Topbar -->
     <div class="topbar">
         <h1>Nosso Amor 💜</h1>
         <div class="icons">
@@ -19,38 +18,32 @@
         </div>
     </div>
 
-    <!-- Banner de Dia dos Namorados -->
     <div class="valentines-banner">
-        <h2>Feliz Dia dos Namorados, meu amor! 💕</h2>
+        <h2>Feliz <span id="relationshipCounterBanner"></span> juntos, meu amor! 💕</h2>
     </div>
 
-    <!-- Botão de música -->
     <div class="music-control">
         <button id="musicToggle" class="music-btn"><i class="fas fa-play"></i> Tocar Música</button>
     </div>
 
-    <!-- Contador de tempo de namoro -->
     <div class="container">
         <section class="counter-box">
-            <p id="counter"></p>
+            <p id="engagementCounter"></p> 
         </section>
     </div>
 
-    <!-- Botão de surpresa -->
     <button id="secretButton" class="secret-button">Clique aqui para uma surpresa ❤️</button>
     <div id="secretMessage" class="secret-message">
         <p id="messageText"></p>
         <button id="nextMessage" class="next-btn">Próxima Mensagem</button>
     </div>
 
-    <!-- Campo de mensagem -->
     <div id="messageBox" class="message-box">
         <textarea id="userMessage" placeholder="Escreva uma mensagem para mim, amor..."></textarea>
         <button id="saveMessage" class="save-btn">Salvar Mensagem</button>
         <p id="savedMessage"></p>
     </div>
 
-    <!-- Galeria de fotos -->
     <section class="gallery">
         <div class="post">
             <img src="images/13.jpeg" alt="Nossa Foto 13">
@@ -145,13 +138,11 @@
         </div>
     </section>
 
-    <!-- Lightbox para fotos -->
     <div id="lightbox" class="lightbox">
         <span class="close">×</span>
         <img class="lightbox-content" id="lightbox-img">
     </div>
 
-    <!-- Música de fundo -->
     <audio id="backgroundMusic">
         <source src="music/romantic-song.mp3" type="audio/mp3">
     </audio>

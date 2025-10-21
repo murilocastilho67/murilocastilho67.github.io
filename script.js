@@ -1,4 +1,4 @@
-// Contador de tempo de namoro
+// Contador de tempo de namoro (agora no banner)
 const startDate = new Date("2021-09-12");
 
 function updateCounter() {
@@ -36,11 +36,60 @@ function updateCounter() {
         months += 12;
     }
 
-    document.getElementById("counter").innerHTML = `💜 ${years} anos, ${months} meses, ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos 💜`;
+    // MUDANÇA AQUI: Atualiza o <span> no banner, e não mais o <p id="counter">
+    // O texto também foi simplificado para caber no banner.
+    document.getElementById("relationshipCounterBanner").innerHTML = `${years} anos, ${months} meses, ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos`;
 }
 
 setInterval(updateCounter, 1000);
 updateCounter();
+
+// Contador de tempo de noivado
+const engagementDate = new Date("2025-06-21T00:00:00"); 
+
+function updateEngagementCounter() {
+    const now = new Date();
+    let years = now.getFullYear() - engagementDate.getFullYear();
+    let months = now.getMonth() - engagementDate.getMonth();
+    let days = now.getDate() - engagementDate.getDate();
+    let hours = now.getHours() - engagementDate.getHours();
+    let minutes = now.getMinutes() - engagementDate.getMinutes();
+    let seconds = now.getSeconds() - engagementDate.getSeconds();
+
+    if (seconds < 0) {
+        minutes--;
+        seconds += 60;
+    }
+
+    if (minutes < 0) {
+        hours--;
+        minutes += 60;
+    }
+
+    if (hours < 0) {
+        days--;
+        hours += 24;
+    }
+
+    if (days < 0) {
+        months--;
+        let prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
+    }
+
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    // Esta função continua igual, atualizando o <p id="engagementCounter">
+    document.getElementById("engagementCounter").innerHTML = `💍 Estamos noivos há: ${years} anos, ${months} meses, ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos 💍`;
+}
+
+// Inicia e atualiza o novo contador a cada segundo
+setInterval(updateEngagementCounter, 1000);
+updateEngagementCounter();
+
 
 // Carrossel de mensagens
 const messages = [
