@@ -1,212 +1,196 @@
-// Contador de tempo de namoro (agora no banner)
-const startDate = new Date("2021-09-12");
+﻿/* =========================================================
+   Nosso Amor — interações
+   ========================================================= */
 
-function updateCounter() {
+/* ---- Abertura (veil) ---- */
+window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('veil').classList.add('hidden'), 1800);
+});
+
+/* ---- Navbar: muda ao rolar ---- */
+const nav = document.getElementById('nav');
+function onScroll() {
+    if (window.scrollY > window.innerHeight - 90) {
+        nav.classList.add('scrolled');
+        nav.classList.remove('at-top');
+    } else {
+        nav.classList.remove('scrolled');
+        nav.classList.add('at-top');
+    }
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* ---- Reveal on scroll ---- */
+const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+}, { threshold: 0.14 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ---- Hero slideshow ---- */
+const slides = Array.from(document.querySelectorAll('#heroSlides .slide'));
+const dotsWrap = document.getElementById('heroDots');
+let current = 0;
+slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.addEventListener('click', () => goToSlide(i));
+    dotsWrap.appendChild(b);
+});
+const dots = Array.from(dotsWrap.children);
+function showSlide(i) {
+    slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+    dots.forEach((d, idx) => d.classList.toggle('on', idx === i));
+    current = i;
+}
+function goToSlide(i) { showSlide(i); resetTimer(); }
+let timer = setInterval(() => showSlide((current + 1) % slides.length), 5000);
+function resetTimer() { clearInterval(timer); timer = setInterval(() => showSlide((current + 1) % slides.length), 5000); }
+showSlide(0);
+
+/* ---- Contadores ---- */
+function diff(from) {
     const now = new Date();
-    let years = now.getFullYear() - startDate.getFullYear();
-    let months = now.getMonth() - startDate.getMonth();
-    let days = now.getDate() - startDate.getDate();
-    let hours = now.getHours() - startDate.getHours();
-    let minutes = now.getMinutes() - startDate.getMinutes();
-    let seconds = now.getSeconds() - startDate.getSeconds();
-
-    if (seconds < 0) {
-        minutes--;
-        seconds += 60;
-    }
-
-    if (minutes < 0) {
-        hours--;
-        minutes += 60;
-    }
-
-    if (hours < 0) {
-        days--;
-        hours += 24;
-    }
-
-    if (days < 0) {
-        months--;
-        let prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-        days += prevMonth.getDate();
-    }
-
-    if (months < 0) {
-        years--;
-        months += 12;
-    }
-
-    // MUDANÇA AQUI: Atualiza o <span> no banner, e não mais o <p id="counter">
-    // O texto também foi simplificado para caber no banner.
-    document.getElementById("relationshipCounterBanner").innerHTML = `${years} anos, ${months} meses, ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos`;
+    let years = now.getFullYear() - from.getFullYear();
+    let months = now.getMonth() - from.getMonth();
+    let days = now.getDate() - from.getDate();
+    let hours = now.getHours() - from.getHours();
+    let minutes = now.getMinutes() - from.getMinutes();
+    let seconds = now.getSeconds() - from.getSeconds();
+    if (seconds < 0) { minutes--; seconds += 60; }
+    if (minutes < 0) { hours--; minutes += 60; }
+    if (hours < 0) { days--; hours += 24; }
+    if (days < 0) { months--; days += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
+    if (months < 0) { years--; months += 12; }
+    return { years, months, days, hours, minutes, seconds };
 }
 
-setInterval(updateCounter, 1000);
-updateCounter();
-
-// Contador de tempo de noivado
-const engagementDate = new Date("2025-06-21T00:00:00"); 
-
-function updateEngagementCounter() {
-    const now = new Date();
-    let years = now.getFullYear() - engagementDate.getFullYear();
-    let months = now.getMonth() - engagementDate.getMonth();
-    let days = now.getDate() - engagementDate.getDate();
-    let hours = now.getHours() - engagementDate.getHours();
-    let minutes = now.getMinutes() - engagementDate.getMinutes();
-    let seconds = now.getSeconds() - engagementDate.getSeconds();
-
-    if (seconds < 0) {
-        minutes--;
-        seconds += 60;
-    }
-
-    if (minutes < 0) {
-        hours--;
-        minutes += 60;
-    }
-
-    if (hours < 0) {
-        days--;
-        hours += 24;
-    }
-
-    if (days < 0) {
-        months--;
-        let prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-        days += prevMonth.getDate();
-    }
-
-    if (months < 0) {
-        years--;
-        months += 12;
-    }
-
-    // Esta função continua igual, atualizando o <p id="engagementCounter">
-    document.getElementById("engagementCounter").innerHTML = `💍 Estamos noivos há: ${years} anos, ${months} meses, ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos 💍`;
+const togetherDate = new Date('2021-09-12T00:00:00');
+const clockEl = document.getElementById('togetherClock');
+const units = [
+    ['years', 'anos'], ['months', 'meses'], ['days', 'dias'],
+    ['hours', 'horas'], ['minutes', 'min'], ['seconds', 'seg']
+];
+function renderClock() {
+    const d = diff(togetherDate);
+    clockEl.innerHTML = units.map(([k, label]) =>
+        `<div class="unit"><div class="num">${String(d[k]).padStart(2, '0')}</div><div class="cap">${label}</div></div>`
+    ).join('');
 }
+renderClock();
+setInterval(renderClock, 1000);
 
-// Inicia e atualiza o novo contador a cada segundo
-setInterval(updateEngagementCounter, 1000);
-updateEngagementCounter();
+/* ---- "há quanto tempo" nos marcos ---- */
+function humanAgo(dateStr) {
+    const d = diff(new Date(dateStr + 'T00:00:00'));
+    const parts = [];
+    if (d.years)  parts.push(d.years + (d.years === 1 ? ' ano' : ' anos'));
+    if (d.months) parts.push(d.months + (d.months === 1 ? ' mês' : ' meses'));
+    if (!d.years && d.days) parts.push(d.days + (d.days === 1 ? ' dia' : ' dias'));
+    if (!parts.length) return 'hoje mesmo 💛';
+    return 'há ' + parts.join(' e ');
+}
+document.querySelectorAll('.ago').forEach(el => {
+    el.textContent = humanAgo(el.dataset.ago);
+});
 
-
-// Carrossel de mensagens
+/* ---- Surpresa: mensagens + confete ---- */
 const messages = [
     "Você é a pessoa mais incrível da minha vida. Eu te amo mais do que tudo! 💖",
     "Cada dia com você é como um presente que nunca quero parar de abrir. 🎁",
     "Você faz meu coração bater mais rápido e o mundo parecer mais bonito. 🌍",
     "Te amar é a melhor aventura da minha vida. 🚀",
-    "Prometo estar sempre ao seu lado, hoje e para sempre. 💍"
+    "Do namoro ao altar, eu escolheria você em todas as vidas. 💍",
+    "Prometo estar sempre ao seu lado, hoje e para sempre. 🤍"
 ];
-let messageIndex = 0;
-
-document.getElementById('secretButton').addEventListener('click', function() {
-    const message = document.getElementById('secretMessage');
-    message.style.display = 'block';
-    document.getElementById('messageText').innerText = messages[messageIndex];
-    // Confetes
-    confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#ff4d4d', '#d1a3d8', '#6a4c9c']
-    });
-});
-
-document.getElementById('nextMessage').addEventListener('click', function() {
-    messageIndex = (messageIndex + 1) % messages.length;
-    document.getElementById('messageText').innerText = messages[messageIndex];
-});
-
-// Função para curtir as fotos
-document.querySelectorAll('.like-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        this.classList.toggle('liked');
-        if (this.classList.contains('liked')) {
-            this.innerHTML = '<i class="fas fa-heart"></i> Curtido';
-        } else {
-            this.innerHTML = '<i class="fas fa-heart"></i> Curtir';
-        }
-    });
-});
-
-// Lightbox para fotos
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-const closeBtn = document.querySelector('.close');
-
-document.querySelectorAll('.post img').forEach(img => {
-    img.addEventListener('click', function() {
-        lightbox.style.display = 'flex';
-        lightboxImg.src = this.src;
-    });
-});
-
-closeBtn.addEventListener('click', function() {
-    lightbox.style.display = 'none';
-});
-
-lightbox.addEventListener('click', function(e) {
-    if (e.target === lightbox) {
-        lightbox.style.display = 'none';
-    }
-});
-
-// Corações animados
-function createHearts() {
-    const heartsContainer = document.createElement('div');
-    heartsContainer.className = 'hearts';
-    document.body.appendChild(heartsContainer);
-    for (let i = 0; i < 10; i++) {
-        const heart = document.createElement('div');
-        heart.className = 'heart';
-        heart.style.left = `${Math.random() * 100}vw`;
-        heart.style.animationDelay = `${Math.random() * 5}s`;
-        heartsContainer.appendChild(heart);
-    }
+let msgIndex = 0;
+const secretCard = document.getElementById('secretCard');
+const messageText = document.getElementById('messageText');
+function fireConfetti() {
+    confetti({ particleCount: 120, spread: 75, origin: { y: 0.6 },
+        colors: ['#C0A35B', '#7C8A66', '#E2BFB6', '#ffffff'] });
 }
-window.onload = createHearts;
-
-// Compartilhamento
-document.querySelector('.fa-share').addEventListener('click', function() {
-    navigator.share({
-        title: 'Nosso Amor ❤️',
-        text: 'Veja o site que fiz para meu amor!',
-        url: window.location.href
-    }).catch(err => alert('Erro ao compartilhar: ' + err));
+document.getElementById('secretButton').addEventListener('click', () => {
+    secretCard.classList.add('show');
+    messageText.textContent = messages[msgIndex];
+    fireConfetti();
+});
+document.getElementById('nextMessage').addEventListener('click', () => {
+    msgIndex = (msgIndex + 1) % messages.length;
+    messageText.textContent = messages[msgIndex];
+    fireConfetti();
 });
 
-// Controle de música
-const music = document.getElementById('backgroundMusic');
-const toggleBtn = document.getElementById('musicToggle');
-toggleBtn.addEventListener('click', function() {
-    if (music.paused) {
-        music.play().catch(err => console.log('Erro ao tocar música: ', err));
-        toggleBtn.innerHTML = '<i class="fas fa-pause"></i> Pausar Música';
-    } else {
-        music.pause();
-        toggleBtn.innerHTML = '<i class="fas fa-play"></i> Tocar Música';
-    }
+/* ---- Curtir fotos ---- */
+document.querySelectorAll('.like-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        btn.classList.toggle('liked');
+        btn.innerHTML = btn.classList.contains('liked')
+            ? '<i class="fas fa-heart"></i> Curtido'
+            : '<i class="fas fa-heart"></i> Curtir';
+    });
 });
 
-// Campo de mensagem
-document.querySelector('.fa-comment').addEventListener('click', function() {
-    const messageBox = document.getElementById('messageBox');
-    messageBox.style.display = messageBox.style.display === 'block' ? 'none' : 'block';
+/* ---- Lightbox ---- */
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxCap = document.getElementById('lightboxCap');
+document.querySelectorAll('.post .frame img').forEach(img => {
+    img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        const cap = img.closest('.post').querySelector('.body p');
+        lightboxCap.textContent = cap ? cap.textContent : '';
+        lightbox.classList.add('show');
+    });
 });
+function closeLightbox() { lightbox.classList.remove('show'); }
+document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-document.getElementById('saveMessage').addEventListener('click', function() {
-    const userMessage = document.getElementById('userMessage').value;
-    if (userMessage.trim()) {
-        localStorage.setItem('savedMessage', userMessage);
-        document.getElementById('savedMessage').innerText = `Mensagem salva: ${userMessage}`;
+/* ---- Mensagem do visitante (localStorage) ---- */
+const savedEl = document.getElementById('savedMessage');
+document.getElementById('saveMessage').addEventListener('click', () => {
+    const val = document.getElementById('userMessage').value.trim();
+    if (val) {
+        localStorage.setItem('savedMessage', val);
+        savedEl.textContent = '“' + val + '”';
         document.getElementById('userMessage').value = '';
     }
 });
+const stored = localStorage.getItem('savedMessage');
+if (stored) savedEl.textContent = '“' + stored + '”';
 
-// Carregar mensagem salva
-const savedMessage = localStorage.getItem('savedMessage');
-if (savedMessage) {
-    document.getElementById('savedMessage').innerText = `Mensagem salva: ${savedMessage}`;
-}
+/* ---- Música ---- */
+const music = document.getElementById('backgroundMusic');
+const musicBtn = document.getElementById('musicToggle');
+const musicLabel = document.getElementById('musicLabel');
+musicBtn.addEventListener('click', () => {
+    if (music.paused) {
+        music.play().then(() => {
+            musicBtn.classList.add('playing');
+            musicLabel.textContent = 'Pausar música';
+        }).catch(() => {});
+    } else {
+        music.pause();
+        musicBtn.classList.remove('playing');
+        musicLabel.textContent = 'Tocar música';
+    }
+});
+
+/* ---- Pétalas/corações flutuantes ---- */
+(function petals() {
+    const layer = document.createElement('div');
+    layer.className = 'petals';
+    document.body.appendChild(layer);
+    for (let i = 0; i < 12; i++) {
+        const p = document.createElement('i');
+        p.className = 'petal fas fa-heart';
+        p.style.left = Math.random() * 100 + 'vw';
+        p.style.fontSize = (9 + Math.random() * 12) + 'px';
+        p.style.animationDuration = (12 + Math.random() * 12) + 's';
+        p.style.animationDelay = (Math.random() * 12) + 's';
+        layer.appendChild(p);
+    }
+})();

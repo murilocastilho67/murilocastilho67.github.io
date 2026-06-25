@@ -3,149 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nosso Amor ❤️</title>
+    <title>Nosso Amor · 2021 · 2025 · 2026</title>
+    <meta name="description" content="Nossa história de amor — do namoro ao casamento.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
-    <div class="topbar">
-        <h1>Nosso Amor 💜</h1>
-        <div class="icons">
-            <i class="fas fa-heart"></i>
-            <i class="fas fa-comment"></i>
-            <i class="fas fa-share"></i>
+
+    <!-- Abertura -->
+    <div id="veil">
+        <div class="veil-mono">
+            <div class="amp">&amp;</div>
+            <p>para sempre</p>
         </div>
     </div>
 
-    <div class="valentines-banner">
-        <h2>Feliz <span id="relationshipCounterBanner"></span> juntos, meu amor! 💕</h2>
-    </div>
+    <!-- Navbar -->
+    <nav class="nav at-top" id="nav">
+        <a href="#topo" class="nav-brand">Nosso&nbsp;Amor</a>
+        <div class="nav-links">
+            <a href="#historia">Nossa História</a>
+            <a href="#galeria">Galeria</a>
+            <a href="#surpresa">Surpresa</a>
+            <a href="#mensagem">Mensagem</a>
+        </div>
+    </nav>
 
-    <div class="music-control">
-        <button id="musicToggle" class="music-btn"><i class="fas fa-play"></i> Tocar Música</button>
-    </div>
+    <!-- HERO com as 4 fotos do casamento -->
+    <header class="hero" id="topo">
+        <div class="hero-slides" id="heroSlides">
+            <div class="slide" style="background-image:url('images/w1.jpg')"></div>
+            <div class="slide" style="background-image:url('images/w2.jpg')"></div>
+            <div class="slide" style="background-image:url('images/w3.jpg')"></div>
+            <div class="slide" style="background-image:url('images/w4.jpg')"></div>
+        </div>
 
-    <div class="container">
-        <section class="counter-box">
-            <p id="engagementCounter"></p> 
-        </section>
-    </div>
+        <div class="hero-inner">
+            <p class="eyebrow">Nossa história de amor</p>
+            <h1>Nosso <em>Amor</em></h1>
+            <div class="ornament"><i class="fas fa-heart"></i></div>
+            <p class="hero-sub">De um simples olhar ao para sempre</p>
+            <span class="hero-date">Casados desde 24 de janeiro de 2026</span>
+        </div>
 
-    <button id="secretButton" class="secret-button">Clique aqui para uma surpresa ❤️</button>
-    <div id="secretMessage" class="secret-message">
-        <p id="messageText"></p>
-        <button id="nextMessage" class="next-btn">Próxima Mensagem</button>
-    </div>
+        <div class="hero-dots" id="heroDots"></div>
+        <a href="#historia" class="scroll-cue" aria-label="Rolar"><i class="fas fa-chevron-down"></i></a>
+    </header>
 
-    <div id="messageBox" class="message-box">
-        <textarea id="userMessage" placeholder="Escreva uma mensagem para mim, amor..."></textarea>
-        <button id="saveMessage" class="save-btn">Salvar Mensagem</button>
-        <p id="savedMessage"></p>
-    </div>
+    <!-- NOSSA HISTÓRIA + contadores -->
+    <section class="story section-pad" id="historia">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <p class="eyebrow">Linha do tempo</p>
+                <h2>Nossa História</h2>
+                <div class="ornament"><i class="fas fa-feather"></i></div>
+                <p>Cada data é um capítulo. E o melhor é que a história só começou.</p>
+            </div>
 
-    <section class="gallery">
-        <div class="post">
-            <img src="images/13.jpeg" alt="Nossa Foto 13">
-            <div class="post-info">
-                <p>Você me amou até no meu pior momento, e juntos mostramos que o amor vence qualquer barreira. Te amo eternamente! 💞</p>
-                <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
+            <div class="live-counter reveal">
+                <span class="label">Estamos juntos há</span>
+                <div class="clock" id="togetherClock"></div>
             </div>
-        </div>
-        <div class="post">
-            <img src="images/12.jpeg" alt="Nossa Foto 12">
-            <div class="post-info">
-                <p>Você topa todas as minhas loucuras, mesmo sabendo que pode dar ruim (e olha que avisei, kkk). Minha maior incentivadora! 🔥</p>
-                <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
-            </div>
-        </div>
-        <div class="post">
-            <img src="images/11.jpeg" alt="Nossa Foto 11">
-            <div class="post-info">
-                <p>Fazer caretas com você nas fotos é puro rolê: espontâneo, leve e cheio de risadas. Amo nossa vibe! 😜</p>
-                <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
-            </div>
-        </div>
-        <div class="post">
-            <img src="images/10.jpeg" alt="Nossa Foto 10">
-            <div class="post-info">
-                <p>Sempre caçando aquele cenário perfeito pra tirar fotos incríveis juntos. Cada paisagem fica mais linda com você! 🌄</p>
-                <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
-            </div>
-        </div>
-        <div class="post">
-            <img src="images/9.jpeg" alt="Nossa Foto 9">
-            <div class="post-info">
-                <p>Nas nossas viagens, nunca rola um atrito. É impressionante como a gente se entende e curte cada momento! ✈️</p>
-                <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
-            </div>
-        </div>
-        <div class="post">
-            <img src="images/8.jpeg" alt="Nossa Foto 8">
-            <div class="post-info">
-                <p>Você tá sempre comigo em todos os rolês, com uma leveza que ilumina tudo. Minha parceira pra vida! 🥰</p>
-                <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
-            </div>
-        </div>
-        <div class="post">
-            <img src="images/7.jpeg" alt="Nossa Foto 7">
-            <div class="post-info">
-                <p>Cada ano que passo contigo é um momento que eu guardo para sempre no coração. 💖</p>
-                <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
-            </div>
-        </div>
-        <div class="post">
-            <img src="images/6.jpeg" alt="Nossa Foto 6">
-            <div class="post-info">
-                <p>Cada passo ao seu lado é uma nova aventura de felicidade. 🌹</p>
-                <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
-            </div>
-        </div>
-        <div class="post">
-            <img src="images/5.jpeg" alt="Nossa Foto 5">
-            <div class="post-info">
-                <p>O pôr do sol não é nada perto da luz que você traz para minha vida. 🌅</p>
-                <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
-            </div>
-        </div>
-        <div class="post">
-            <img src="images/4.jpeg" alt="Nossa Foto 4">
-            <div class="post-info">
-                <p>Desde o momento que te vi, soube que seria para sempre. 💖</p>
-                <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
-            </div>
-        </div>
-        <div class="post">
-            <img src="images/3.jpeg" alt="Nossa Foto 3">
-            <div class="post-info">
-                <p>Ficar ao seu lado é o meu lugar favorito. 🍿❤️</p>
-                <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
-            </div>
-        </div>
-        <div class="post">
-            <img src="images/2.jpeg" alt="Nossa Foto 2">
-            <div class="post-info">
-                <p>A cada viagem, descubro mais razões para te amar. 🏖️</p>
-                <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
-            </div>
-        </div>
-        <div class="post">
-            <img src="images/1.jpeg" alt="Nossa Foto 1">
-            <div class="post-info">
-                <p>O seu sorriso ilumina meu mundo todos os dias. ✨</p>
-                <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
+
+            <div class="milestones">
+                <div class="milestone reveal">
+                    <div class="ico"><i class="fas fa-heart"></i></div>
+                    <h3>O Namoro</h3>
+                    <div class="date">12 de setembro de 2021</div>
+                    <div class="ago" data-ago="2021-09-12"></div>
+                </div>
+                <div class="milestone reveal">
+                    <div class="ico"><i class="fas fa-ring"></i></div>
+                    <h3>O Noivado</h3>
+                    <div class="date">21 de junho de 2025</div>
+                    <div class="ago" data-ago="2025-06-21"></div>
+                </div>
+                <div class="milestone reveal">
+                    <div class="ico"><i class="fas fa-champagne-glasses"></i></div>
+                    <h3>O Casamento</h3>
+                    <div class="date">24 de janeiro de 2026</div>
+                    <div class="ago" data-ago="2026-01-24"></div>
+                </div>
             </div>
         </div>
     </section>
 
-    <div id="lightbox" class="lightbox">
-        <span class="close">×</span>
-        <img class="lightbox-content" id="lightbox-img">
-    </div>
+    <!-- GALERIA -->
+    <section class="section-pad" id="galeria">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <p class="eyebrow">Momentos</p>
+                <h2>Nossa Galeria</h2>
+                <div class="ornament"><i class="fas fa-camera-retro"></i></div>
+                <p>Toque em qualquer foto para ampliar.</p>
+            </div>
 
-    <audio id="backgroundMusic">
+            <div class="gallery-grid">
+                <article class="post reveal">
+                    <div class="frame"><img src="images/13.jpeg" alt="Nossa foto 13" loading="lazy"></div>
+                    <div class="body">
+                        <p>Você me amou até no meu pior momento, e juntos mostramos que o amor vence qualquer barreira. Te amo eternamente! 💞</p>
+                        <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
+                    </div>
+                </article>
+                <article class="post reveal">
+                    <div class="frame"><img src="images/12.jpeg" alt="Nossa foto 12" loading="lazy"></div>
+                    <div class="body">
+                        <p>Você topa todas as minhas loucuras, mesmo sabendo que pode dar ruim (e olha que avisei, kkk). Minha maior incentivadora! 🔥</p>
+                        <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
+                    </div>
+                </article>
+                <article class="post reveal">
+                    <div class="frame"><img src="images/11.jpeg" alt="Nossa foto 11" loading="lazy"></div>
+                    <div class="body">
+                        <p>Fazer caretas com você nas fotos é puro rolê: espontâneo, leve e cheio de risadas. Amo nossa vibe! 😜</p>
+                        <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
+                    </div>
+                </article>
+                <article class="post reveal">
+                    <div class="frame"><img src="images/10.jpeg" alt="Nossa foto 10" loading="lazy"></div>
+                    <div class="body">
+                        <p>Sempre caçando aquele cenário perfeito pra tirar fotos incríveis juntos. Cada paisagem fica mais linda com você! 🌄</p>
+                        <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
+                    </div>
+                </article>
+                <article class="post reveal">
+                    <div class="frame"><img src="images/9.jpeg" alt="Nossa foto 9" loading="lazy"></div>
+                    <div class="body">
+                        <p>Nas nossas viagens, nunca rola um atrito. É impressionante como a gente se entende e curte cada momento! ✈️</p>
+                        <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
+                    </div>
+                </article>
+                <article class="post reveal">
+                    <div class="frame"><img src="images/8.jpeg" alt="Nossa foto 8" loading="lazy"></div>
+                    <div class="body">
+                        <p>Você tá sempre comigo em todos os rolês, com uma leveza que ilumina tudo. Minha parceira pra vida! 🥰</p>
+                        <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
+                    </div>
+                </article>
+                <article class="post reveal">
+                    <div class="frame"><img src="images/7.jpeg" alt="Nossa foto 7" loading="lazy"></div>
+                    <div class="body">
+                        <p>Cada ano que passo contigo é um momento que eu guardo para sempre no coração. 💖</p>
+                        <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
+                    </div>
+                </article>
+                <article class="post reveal">
+                    <div class="frame"><img src="images/6.jpeg" alt="Nossa foto 6" loading="lazy"></div>
+                    <div class="body">
+                        <p>Cada passo ao seu lado é uma nova aventura de felicidade. 🌹</p>
+                        <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
+                    </div>
+                </article>
+                <article class="post reveal">
+                    <div class="frame"><img src="images/5.jpeg" alt="Nossa foto 5" loading="lazy"></div>
+                    <div class="body">
+                        <p>O pôr do sol não é nada perto da luz que você traz para minha vida. 🌅</p>
+                        <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
+                    </div>
+                </article>
+                <article class="post reveal">
+                    <div class="frame"><img src="images/4.jpeg" alt="Nossa foto 4" loading="lazy"></div>
+                    <div class="body">
+                        <p>Desde o momento que te vi, soube que seria para sempre. 💖</p>
+                        <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
+                    </div>
+                </article>
+                <article class="post reveal">
+                    <div class="frame"><img src="images/3.jpeg" alt="Nossa foto 3" loading="lazy"></div>
+                    <div class="body">
+                        <p>Ficar ao seu lado é o meu lugar favorito. 🍿❤️</p>
+                        <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
+                    </div>
+                </article>
+                <article class="post reveal">
+                    <div class="frame"><img src="images/2.jpeg" alt="Nossa foto 2" loading="lazy"></div>
+                    <div class="body">
+                        <p>A cada viagem, descubro mais razões para te amar. 🏖️</p>
+                        <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
+                    </div>
+                </article>
+                <article class="post reveal">
+                    <div class="frame"><img src="images/1.jpeg" alt="Nossa foto 1" loading="lazy"></div>
+                    <div class="body">
+                        <p>O seu sorriso ilumina meu mundo todos os dias. ✨</p>
+                        <button class="like-btn"><i class="fas fa-heart"></i> Curtir</button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- SURPRESA -->
+    <section class="surprise section-pad" id="surpresa">
+        <div class="wrap">
+            <p class="eyebrow">Só pra você</p>
+            <h2>Uma surpresa</h2>
+            <div class="ornament"><i class="fas fa-heart"></i></div>
+            <p class="intro">Aperta o botão e deixa eu te dizer uma coisinha… (de novo, e de novo 💌)</p>
+            <button id="secretButton" class="btn-gold">Abrir surpresa ❤</button>
+
+            <div id="secretCard" class="secret-card">
+                <p id="messageText"></p>
+                <button id="nextMessage" class="next-btn">Próxima mensagem</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENSAGEM DO VISITANTE -->
+    <section class="message-section section-pad" id="mensagem">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <p class="eyebrow">Para mim</p>
+                <h2>Deixe uma mensagem</h2>
+                <div class="ornament"><i class="fas fa-envelope-open-text"></i></div>
+            </div>
+            <div class="message-box reveal">
+                <textarea id="userMessage" placeholder="Escreva uma mensagem para mim, amor..."></textarea>
+                <button id="saveMessage" class="btn-sage">Salvar mensagem</button>
+                <p id="savedMessage"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="amp">&amp;</div>
+        <div class="date">24 · 01 · 2026</div>
+        <p class="credit">Feito com <i class="fas fa-heart"></i> para a minha pessoa favorita.</p>
+    </footer>
+
+    <!-- Música -->
+    <button id="musicToggle" class="music-fab" aria-label="Tocar música">
+        <span class="disc"><i class="fas fa-music"></i></span>
+        <span id="musicLabel">Tocar música</span>
+    </button>
+    <audio id="backgroundMusic" loop>
         <source src="music/romantic-song.mp3" type="audio/mp3">
     </audio>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="close" id="lightboxClose">&times;</span>
+        <img id="lightboxImg" alt="Foto ampliada">
+        <div class="cap" id="lightboxCap"></div>
+    </div>
 
     <script src="script.js"></script>
 </body>
